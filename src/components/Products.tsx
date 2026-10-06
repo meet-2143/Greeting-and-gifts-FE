@@ -18,7 +18,7 @@ export function WishButton({ product, className = '' }: { product: Product; clas
       onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWish(product.id, product.name) }}
       aria-pressed={on}
       aria-label={on ? `Remove ${product.name} from wishlist` : `Save ${product.name} to wishlist`}
-      className={`grid h-11 w-11 place-items-center rounded-full bg-white/90 shadow-soft backdrop-blur transition hover:scale-105 active:scale-90 ${className}`}
+      className={`grid h-9 w-9 place-items-center rounded-full bg-white/90 shadow-soft sm:h-11 sm:w-11 backdrop-blur transition hover:scale-105 active:scale-90 ${className}`}
     >
       <HeartIcon size={19} className={`transition ${on ? 'fill-blush-400 text-blush-400' : 'text-cocoa-600'}`} />
     </button>
@@ -38,7 +38,7 @@ export function Price({ product, size = 'md' }: { product: Product; size?: 'md' 
 export function ProductCard({ product, onQuickView, compact = false }: { product: Product; onQuickView?: (p: Product) => void; compact?: boolean }) {
   const { addToCart } = useStore()
   return (
-    <article className="group flex h-full flex-col">
+    <article className="group flex h-full min-w-0 flex-col">
       <div className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-white ring-1 ring-cream-300/80 transition duration-300 group-hover:shadow-lift group-hover:ring-blush-200">
         <Link to={`/product/${product.slug}`} aria-label={product.name} className="block h-full p-1.5">
           <ProductImage src={product.image} alt={product.name} className="rounded-3xl transition duration-700 group-hover:scale-105" />
@@ -48,7 +48,7 @@ export function ProductCard({ product, onQuickView, compact = false }: { product
           {product.isNew && <span className="rounded-full bg-sage-500 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">New</span>}
           {!product.inStock && <span className="rounded-full bg-cocoa-600 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">Sold out</span>}
         </div>
-        <WishButton product={product} className="absolute right-3 top-3" />
+        <WishButton product={product} className="absolute right-2 top-2 sm:right-3 sm:top-3" />
         {onQuickView && (
           <button
             onClick={() => onQuickView(product)}
@@ -60,14 +60,14 @@ export function ProductCard({ product, onQuickView, compact = false }: { product
         <p className="text-[11px] font-bold uppercase tracking-[.14em] text-sage-500">{product.category}</p>
         <h3 className="mt-1 font-display text-lg leading-snug text-cocoa-700 sm:text-xl"><Link to={`/product/${product.slug}`} className="decoration-blush-300 underline-offset-4 hover:underline">{product.name}</Link></h3>
         <div className="mt-1"><Rating value={product.rating} count={product.reviews} /></div>
-        <div className="mt-auto flex items-end justify-between gap-2 pt-3">
+        <div className="mt-auto flex flex-wrap items-end justify-between gap-x-2 gap-y-2 pt-3">
           <Price product={product} />
           <div className="flex gap-1.5">
-            {onQuickView && <button onClick={() => onQuickView(product)} aria-label={`Quick view ${product.name}`} className="grid h-11 w-11 place-items-center rounded-full border border-cocoa-600/25 text-cocoa-700 transition hover:bg-cream-200 md:hidden"><EyeIcon size={18} /></button>}
+            {onQuickView && <button onClick={() => onQuickView(product)} aria-label={`Quick view ${product.name}`} className="grid h-10 w-10 place-items-center rounded-full border border-cocoa-600/25 text-cocoa-700 transition hover:bg-cream-200 sm:h-11 sm:w-11 md:hidden"><EyeIcon size={18} /></button>}
             <button
               onClick={() => addToCart(product)} disabled={!product.inStock}
               aria-label={product.inStock ? `Add ${product.name} to cart` : `${product.name} is sold out`}
-              className="grid h-11 w-11 place-items-center rounded-full bg-cocoa-600 text-white shadow-soft transition hover:scale-105 hover:bg-cocoa-700 active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
+              className="grid h-10 w-10 place-items-center rounded-full bg-cocoa-600 text-white shadow-soft sm:h-11 sm:w-11 transition hover:scale-105 hover:bg-cocoa-700 active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
             ><BagIcon size={18} /></button>
           </div>
         </div>
@@ -80,7 +80,7 @@ export function ProductGrid({ items, onQuickView, cols = 4 }: { items: Product[]
   return (
     <div className={`grid grid-cols-2 gap-3 sm:gap-5 md:grid-cols-3 ${cols === 4 ? 'xl:grid-cols-4' : 'lg:gap-6'}`}>
       {items.map((p, i) => (
-        <Reveal key={p.id} delay={(i % 4) * 70}><ProductCard product={p} onQuickView={onQuickView} compact /></Reveal>
+        <Reveal key={p.id} delay={(i % 4) * 70} className="min-w-0"><ProductCard product={p} onQuickView={onQuickView} compact /></Reveal>
       ))}
     </div>
   )
