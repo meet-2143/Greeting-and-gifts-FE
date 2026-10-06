@@ -26,6 +26,7 @@ export default {
         'slide-in': { from: { transform: 'translateX(100%)' }, to: { transform: 'none' } },
         'slide-up': { from: { transform: 'translateY(100%)' }, to: { transform: 'none' } },
         'fade-in': { from: { opacity: 0 }, to: { opacity: 1 } },
+        grow: { from: { width: '0%' }, to: { width: '100%' } },
         float: { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
       },
       animation: {

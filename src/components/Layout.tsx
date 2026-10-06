@@ -104,35 +104,47 @@ export function Navbar() {
 export function Footer() {
   const col = (title: string, links: [string, string][]) => (
     <div>
-      <h3 className="mb-4 font-sans text-xs font-bold uppercase tracking-[.18em] text-blush-300">{title}</h3>
+      <h3 className="mb-4 font-sans text-xs font-bold uppercase tracking-[.18em] text-cocoa-700">{title}</h3>
       <ul className="space-y-2.5">
         {links.map(([l, to]) => (
-          <li key={l}>{to.startsWith('http') ? <a className="text-sm text-cream-200 transition hover:text-white" href={to} target="_blank" rel="noopener noreferrer">{l}</a> : <Link className="text-sm text-cream-200 transition hover:text-white" to={to}>{l}</Link>}</li>
+          <li key={l}><Link className="text-sm text-cocoa-500 transition hover:text-cocoa-700 hover:underline" to={to}>{l}</Link></li>
         ))}
       </ul>
     </div>
   )
   const c = (_handle?: string) => '/shop'
   return (
-    <footer className="mt-8 bg-cocoa-700 text-cream-200">
-      <div className="container-x py-14 sm:py-16">
-        <div className="grid gap-10 lg:grid-cols-[1.3fr_repeat(4,1fr)]">
-          <div className="max-w-xs">
-            <Logo light />
-            <p className="mt-4 text-sm leading-relaxed text-cream-300">{store.tagline}. A local gift boutique for every birthday, milestone and little moment worth remembering.</p>
-            <div className="mt-5 flex gap-2">
-              {[[InstagramIcon, 'Instagram'], [FacebookIcon, 'Facebook'], [TikTokIcon, 'TikTok']].map(([Icon, label]) => {
-                const I = Icon as typeof InstagramIcon
-                return <a key={label as string} href="#" aria-label={label as string} className="grid h-11 w-11 place-items-center rounded-full border border-cream-200/20 text-cream-100 transition hover:bg-blush-300 hover:text-cocoa-700"><I size={18} /></a>
-              })}
+    <footer className="mt-8">
+      <div className="bg-blush-100">
+        <div className="container-x py-14 sm:py-16">
+          <div className="mb-12 grid gap-8 rounded-4xl bg-white p-6 shadow-soft sm:p-10 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+            <div>
+              <Logo />
+              <p className="mt-4 max-w-md text-sm leading-relaxed text-cocoa-500">{store.tagline}. A local gift boutique for every birthday, milestone and little moment worth remembering.</p>
+              <div className="mt-5 flex gap-2">
+                {[[InstagramIcon, 'Instagram'], [FacebookIcon, 'Facebook'], [TikTokIcon, 'TikTok']].map(([Icon, label]) => {
+                  const I = Icon as typeof InstagramIcon
+                  return <a key={label as string} href="#" aria-label={label as string} className="grid h-11 w-11 place-items-center rounded-full bg-blush-100 text-cocoa-600 transition hover:bg-cocoa-600 hover:text-white"><I size={18} /></a>
+                })}
+              </div>
+            </div>
+            <div className="rounded-3xl bg-cream-100 p-5 text-sm">
+              <p className="font-display text-xl text-cocoa-700">Visit the shop</p>
+              <p className="mt-1 text-cocoa-500">{store.address}</p>
+              <p className="text-cocoa-500">{store.phone}</p>
+              <Link to="/location" className="link-arrow mt-3">Get directions <ArrowIcon size={15} /></Link>
             </div>
           </div>
-          {col('Shop', [['All Gifts', '/shop'], ['Best Sellers', c('best-sellers')], ['New Arrivals', c('new-arrivals')], ['Gift Hampers', c('gift-hampers')], ['Gift Cards', c('gift-cards')]])}
-          {col('Occasions', [['Birthday', '/occasions#birthday'], ['Anniversary', '/occasions#anniversary'], ['Wedding', '/occasions#wedding'], ['Thank You', '/occasions#thank-you'], ['New Baby', '/occasions#new-baby'], ['Christmas', '/occasions#christmas']])}
-          {col('Company', [['About Us', '/about'], ['Services', '/services'], ['Store Location', '/location'], ['Contact', '/contact']])}
-          {col('Help', [['Delivery', '/services'], ['Returns', '/contact'], ['FAQ', '/contact'], ['Privacy Policy', '/contact'], ['Terms', '/contact']])}
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+            {col('Shop', [['All Gifts', '/shop'], ['Best Sellers', c('best-sellers')], ['New Arrivals', c('new-arrivals')], ['Candles', '/shop?category=Candles'], ['Mugs & Cups', '/shop?category=Mugs%20%26%20Cups']])}
+            {col('Occasions', [['Birthday', '/occasions#birthday'], ['Anniversary', '/occasions#anniversary'], ['Wedding', '/occasions#wedding'], ['Thank You', '/occasions#thank-you'], ['New Baby', '/occasions#new-baby'], ['Christmas', '/occasions#christmas']])}
+            {col('Company', [['About Us', '/about'], ['Services', '/services'], ['Store Location', '/location'], ['Contact', '/contact']])}
+            {col('Help', [['Delivery', '/services'], ['Returns', '/contact'], ['FAQ', '/contact'], ['Privacy Policy', '/contact'], ['Terms', '/contact']])}
+          </div>
         </div>
-        <div className="mt-12 flex flex-col gap-4 border-t border-cream-200/15 pt-6 text-xs text-cream-300 sm:flex-row sm:items-center sm:justify-between">
+      </div>
+      <div className="bg-cocoa-700 text-cream-200">
+        <div className="container-x flex flex-col gap-3 py-5 text-xs sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 {store.name}. All rights reserved.</p>
           <a href={`mailto:${store.email}`} className="inline-flex items-center gap-2 hover:text-white"><MailIcon size={14} />{store.email}</a>
         </div>

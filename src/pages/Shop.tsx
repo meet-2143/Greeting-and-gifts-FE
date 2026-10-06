@@ -54,12 +54,13 @@ export default function Shop() {
   const [f, setF] = useState<Filters>(() => ({
     ...empty,
     q: params.get('q') ?? '',
+    category: params.get('category') ? [params.get('category')!] : [],
     occasion: params.get('occasion') ? [params.get('occasion')!] : [],
     recipient: params.get('recipient') ? [params.get('recipient')!] : [],
     budget: params.get('budget') ?? '',
   }))
   useEffect(() => {
-    setF((p) => ({ ...p, q: params.get('q') ?? '', occasion: params.get('occasion') ? [params.get('occasion')!] : [], recipient: params.get('recipient') ? [params.get('recipient')!] : [], budget: params.get('budget') ?? '' }))
+    setF((p) => ({ ...p, q: params.get('q') ?? '', category: params.get('category') ? [params.get('category')!] : [], occasion: params.get('occasion') ? [params.get('occasion')!] : [], recipient: params.get('recipient') ? [params.get('recipient')!] : [], budget: params.get('budget') ?? '' }))
   }, [params])
   const [sort, setSort] = useState<(typeof sorts)[number][0]>('featured')
   const [drawer, setDrawer] = useState(false)

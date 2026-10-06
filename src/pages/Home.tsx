@@ -1,6 +1,7 @@
 import { products } from '../data'
 import { useQuickView, ProductCarousel, ProductGrid } from '../components/Products'
 import { FeatureCardsStrip } from './strip'
+import { CategorySlideshow } from '../components/CategorySlideshow'
 import { GiftFinder, GiftInspiration, HeroSection, Newsletter, OccasionsSection, PromoBanner, StoreLocation, Testimonials, WhyUs } from '../components/Sections'
 import { ButtonLink, SectionHeading, usePageMeta } from '../components/ui'
 
@@ -14,6 +15,7 @@ export default function Home() {
     <>
       <HeroSection />
       <FeatureCardsStrip />
+      <CategorySlideshow />
       <OccasionsSection />
 
       <section className="container-x pb-8" aria-labelledby="featured-h">

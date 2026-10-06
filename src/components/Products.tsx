@@ -38,12 +38,12 @@ export function Price({ product, size = 'md' }: { product: Product; size?: 'md' 
 export function ProductCard({ product, onQuickView, compact = false }: { product: Product; onQuickView?: (p: Product) => void; compact?: boolean }) {
   const { addToCart } = useStore()
   return (
-    <article className="group card relative flex h-full flex-col transition duration-300 hover:-translate-y-1 hover:shadow-lift">
-      <div className="relative aspect-square overflow-hidden bg-white">
-        <Link to={`/product/${product.slug}`} aria-label={product.name} className="block h-full">
-          <ProductImage src={product.image} alt={product.name} className="transition duration-700 group-hover:scale-105" />
+    <article className="group flex h-full flex-col">
+      <div className="relative aspect-square overflow-hidden rounded-[1.75rem] bg-white ring-1 ring-cream-300/80 transition duration-300 group-hover:shadow-lift group-hover:ring-blush-200">
+        <Link to={`/product/${product.slug}`} aria-label={product.name} className="block h-full p-1.5">
+          <ProductImage src={product.image} alt={product.name} className="rounded-3xl transition duration-700 group-hover:scale-105" />
         </Link>
-        <div className="pointer-events-none absolute left-3 top-3 flex flex-col gap-1.5">
+        <div className="pointer-events-none absolute left-3 top-3 flex flex-col items-start gap-1.5">
           {product.salePrice && <span className="rounded-full bg-blush-400 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">Sale</span>}
           {product.isNew && <span className="rounded-full bg-sage-500 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">New</span>}
           {!product.inStock && <span className="rounded-full bg-cocoa-600 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wide text-white">Sold out</span>}
@@ -52,23 +52,24 @@ export function ProductCard({ product, onQuickView, compact = false }: { product
         {onQuickView && (
           <button
             onClick={() => onQuickView(product)}
-            className="absolute inset-x-3 bottom-3 hidden min-h-[44px] translate-y-3 items-center justify-center gap-2 rounded-full bg-white/95 text-sm font-semibold text-cocoa-700 opacity-0 shadow-card backdrop-blur transition duration-300 hover:bg-white focus-visible:translate-y-0 focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 md:flex"
+            className="absolute bottom-3 left-1/2 hidden min-h-[40px] -translate-x-1/2 translate-y-3 items-center gap-2 whitespace-nowrap rounded-full bg-cocoa-700/95 px-5 text-sm font-semibold text-cream-50 opacity-0 shadow-card transition duration-300 focus-visible:translate-y-0 focus-visible:opacity-100 group-hover:translate-y-0 group-hover:opacity-100 md:flex"
           ><EyeIcon size={16} />Quick View</button>
         )}
       </div>
-      <div className={`flex flex-1 flex-col ${compact ? 'p-3.5' : 'p-4 sm:p-5'}`}>
+      <div className={`flex flex-1 flex-col ${compact ? 'pt-3.5' : 'pt-4'}`}>
         <p className="text-[11px] font-bold uppercase tracking-[.14em] text-sage-500">{product.category}</p>
         <h3 className="mt-1 font-display text-lg leading-snug text-cocoa-700 sm:text-xl"><Link to={`/product/${product.slug}`} className="decoration-blush-300 underline-offset-4 hover:underline">{product.name}</Link></h3>
-        <div className="mt-1.5"><Rating value={product.rating} count={product.reviews} /></div>
-        <div className="mt-3"><Price product={product} /></div>
-        <div className="mt-auto flex gap-2 pt-4">
-          <button
-            onClick={() => addToCart(product)} disabled={!product.inStock}
-            className="btn-primary !min-h-[44px] flex-1 !px-3 sm:!px-4"
-          ><BagIcon size={16} className="hidden sm:block" />{product.inStock ? 'Add to Cart' : 'Sold out'}</button>
-          {onQuickView && (
-            <button onClick={() => onQuickView(product)} aria-label={`Quick view ${product.name}`} className="btn-secondary !min-h-[44px] !px-3.5 md:hidden"><EyeIcon size={18} /></button>
-          )}
+        <div className="mt-1"><Rating value={product.rating} count={product.reviews} /></div>
+        <div className="mt-auto flex items-end justify-between gap-2 pt-3">
+          <Price product={product} />
+          <div className="flex gap-1.5">
+            {onQuickView && <button onClick={() => onQuickView(product)} aria-label={`Quick view ${product.name}`} className="grid h-11 w-11 place-items-center rounded-full border border-cocoa-600/25 text-cocoa-700 transition hover:bg-cream-200 md:hidden"><EyeIcon size={18} /></button>}
+            <button
+              onClick={() => addToCart(product)} disabled={!product.inStock}
+              aria-label={product.inStock ? `Add ${product.name} to cart` : `${product.name} is sold out`}
+              className="grid h-11 w-11 place-items-center rounded-full bg-cocoa-600 text-white shadow-soft transition hover:scale-105 hover:bg-cocoa-700 active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
+            ><BagIcon size={18} /></button>
+          </div>
         </div>
       </div>
     </article>

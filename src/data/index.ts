@@ -117,5 +117,5 @@ export const store = {
   shopifyDomain: 'https://greetingsandgift.myshopify.com',
 }
 
-export const money = (n: number) => `${n.toFixed(2)}`
+export const money = (n: number) => '$' + n.toFixed(2)
 export const effectivePrice = (p: Product) => p.salePrice ?? p.price

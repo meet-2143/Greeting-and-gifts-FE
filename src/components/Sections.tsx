@@ -13,47 +13,44 @@ export function HeroSection() {
     <section className="relative overflow-hidden bg-gradient-to-b from-cream-100 via-cream-100 to-blush-100/60">
       <div aria-hidden className="absolute -right-24 -top-24 h-[420px] w-[420px] rounded-full bg-blush-200/50 blur-3xl" />
       <div aria-hidden className="absolute -bottom-32 left-[-6rem] h-[360px] w-[360px] rounded-full bg-sage-100 blur-3xl" />
-      <div className="container-x relative grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.05fr_1fr] lg:gap-14 lg:py-24">
+      <div className="container-x relative grid items-center gap-12 py-12 sm:py-16 lg:grid-cols-[1.05fr_1fr] lg:gap-10 lg:py-24">
         <div className="max-w-xl">
-          <p className="eyebrow mb-5 animate-fade-up">Local gift boutique · Fitzroy, Melbourne</p>
+          <p className="mb-5 inline-flex animate-fade-up items-center gap-2 rounded-full bg-white/80 px-4 py-2 text-xs font-bold uppercase tracking-[.16em] text-sage-700 shadow-soft">
+            <span className="h-2 w-2 rounded-full bg-sage-500" />Local gift boutique
+          </p>
           <h1 className="animate-fade-up text-[2.6rem] leading-[1.04] text-cocoa-700 [animation-delay:80ms] sm:text-6xl lg:text-[4.4rem]">
-            Thoughtful gifts for <em className="text-blush-400 not-italic">every</em> moment
+            Thoughtful gifts for <span className="relative whitespace-nowrap text-blush-400">every moment<svg aria-hidden viewBox="0 0 200 12" className="absolute -bottom-2 left-0 w-full" preserveAspectRatio="none"><path d="M2 8 Q50 0 100 6 T198 5" fill="none" stroke="#D4A95A" strokeWidth="3" strokeLinecap="round" /></svg></span>
           </h1>
-          <p className="mt-5 max-w-md animate-fade-up text-base leading-relaxed text-cocoa-500 [animation-delay:160ms] sm:text-lg">
+          <p className="mt-6 max-w-md animate-fade-up text-base leading-relaxed text-cocoa-500 [animation-delay:160ms] sm:text-lg">
             Find something special for birthdays, celebrations, milestones, and every little moment worth remembering.
           </p>
           <div className="mt-8 flex animate-fade-up flex-col gap-3 [animation-delay:240ms] sm:flex-row">
             <ButtonLink to="/shop" className="!min-h-[52px] !px-8 text-base">Shop Gifts</ButtonLink>
-            <ButtonLink to="/occasions" kind="secondary" className="!min-h-[52px] !px-8 text-base">Explore Occasions</ButtonLink>
+            <ButtonLink to="/occasions" kind="secondary" className="!min-h-[52px] !bg-white/70 !px-8 text-base">Explore Occasions</ButtonLink>
           </div>
           <div className="mt-9 flex animate-fade-up items-center gap-4 [animation-delay:320ms]">
             <div className="flex -space-x-2">{['S', 'J', 'P', 'O'].map((l, i) => <span key={l} className="grid h-9 w-9 place-items-center rounded-full border-2 border-cream-100 text-xs font-bold text-cocoa-700" style={{ background: ['#F1CFCB', '#C9D6B9', '#F6CFB0', '#EADCC6'][i] }}>{l}</span>)}</div>
             <div>
               <div className="flex">{[1, 2, 3, 4, 5].map((i) => <Star key={i} />)}</div>
-              <p className="text-xs text-cocoa-500">Loved by 2,000+ local gift givers</p>
+              <p className="text-xs text-cocoa-500">Loved by local gift givers</p>
             </div>
           </div>
         </div>
-        <div className="relative mx-auto w-full max-w-lg animate-fade-up [animation-delay:200ms] lg:max-w-none">
-          <div className="relative aspect-[5/5] overflow-hidden rounded-[2.5rem] shadow-lift sm:rounded-[3rem] lg:aspect-[6/6]">
-            <div className="grid h-full w-full grid-cols-2 gap-3 bg-blush-100 p-3 sm:gap-4 sm:p-4">
-              <div className="mt-6 flex flex-col gap-3 sm:gap-4">
-                <div className="flex-1 overflow-hidden rounded-3xl bg-white shadow-soft"><ProductImage src="/images/owl-candle.jpg" alt="Patchwork owl boutique candle with gold lid" /></div>
-                <div className="flex-1 overflow-hidden rounded-3xl bg-white shadow-soft"><ProductImage src="/images/elephant-mug-pink.jpg" alt="My first cup pink elephant mug" /></div>
-              </div>
-              <div className="mb-6 flex flex-col gap-3 sm:gap-4">
-                <div className="flex-1 overflow-hidden rounded-3xl bg-white shadow-soft"><ProductImage src="/images/owl-tray.jpg" alt="Patchwork owl mini tray" /></div>
-                <div className="flex-1 overflow-hidden rounded-3xl bg-white shadow-soft"><ProductImage src="/images/teddy-frames.jpg" alt="Blue and pink teddy bear photo frames" /></div>
-              </div>
-            </div>
+
+        <div className="relative mx-auto w-full max-w-md animate-fade-up pb-6 [animation-delay:200ms] lg:max-w-lg">
+          <div aria-hidden className="absolute left-1/2 top-6 h-[88%] w-[86%] -translate-x-1/2 rounded-t-[999px] rounded-b-[2rem] border-2 border-dashed border-cocoa-400/40" />
+          <div className="relative mx-auto aspect-[4/5] w-[76%] overflow-hidden rounded-t-[999px] rounded-b-[2rem] border-[10px] border-white bg-white shadow-lift">
+            <ProductImage src="/images/owl-candle.jpg" alt="Patchwork owl boutique candle with gold lid" className="!object-cover" />
           </div>
-          <div className="absolute -left-3 bottom-8 hidden animate-float items-center gap-3 rounded-2xl bg-white p-3.5 pr-5 shadow-lift sm:flex">
-            <span className="grid h-11 w-11 place-items-center rounded-full bg-sage-100 text-sage-700"><TruckIcon /></span>
-            <div><p className="text-sm font-bold text-cocoa-700">Same-day delivery</p><p className="text-xs text-cocoa-400">Order before 2pm</p></div>
+          <div className="absolute -left-1 bottom-10 h-28 w-28 animate-float overflow-hidden rounded-full border-[6px] border-white bg-white shadow-lift sm:-left-6 sm:h-36 sm:w-36">
+            <ProductImage src="/images/elephant-mug-pink.jpg" alt="My first cup pink elephant mug" className="!object-cover" />
           </div>
-          <div className="absolute -right-2 top-8 hidden rounded-2xl bg-white px-4 py-3 shadow-lift sm:block">
-            <p className="font-display text-2xl leading-none text-cocoa-700">4.9<span className="text-sm text-cocoa-400"> / 5</span></p>
-            <div className="mt-1 flex">{[1, 2, 3, 4, 5].map((i) => <Star key={i} size={11} />)}</div>
+          <div className="absolute -right-1 top-14 h-24 w-24 overflow-hidden rounded-full border-[6px] border-white bg-white shadow-lift sm:-right-4 sm:h-32 sm:w-32">
+            <ProductImage src="/images/owl-tray.jpg" alt="Patchwork owl mini tray" className="!object-cover" />
+          </div>
+          <div className="absolute bottom-2 right-2 flex items-center gap-3 rounded-full bg-cocoa-700 py-2 pl-2 pr-5 text-cream-50 shadow-lift sm:right-6">
+            <span className="grid h-9 w-9 place-items-center rounded-full bg-blush-300 text-cocoa-700"><TruckIcon size={18} /></span>
+            <span className="text-xs leading-tight"><strong className="block text-sm">Same-day delivery</strong>Order before 2pm</span>
           </div>
         </div>
       </div>
@@ -62,20 +59,18 @@ export function HeroSection() {
 }
 
 /* ───────── Occasions ───────── */
-export function OccasionCard({ o, tall = false }: { o: Occasion; tall?: boolean }) {
+export function OccasionCard({ o }: { o: Occasion; tall?: boolean }) {
   return (
-    <Link to={`/shop?occasion=${o.slug}`} id={o.slug}
-      className={`group relative block overflow-hidden rounded-3xl bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-lift ${tall ? 'aspect-[4/5] sm:aspect-[4/3] lg:aspect-[5/4]' : 'aspect-[4/5]'}`}>
-      {o.image ? <ProductImage src={o.image} alt={`${o.name} gifts`} className="!h-[78%] transition duration-700 group-hover:scale-105" /> : <GiftArt scene={o.scene} tone={o.tone} title={`${o.name} gifts`} className="transition duration-700 group-hover:scale-110" />}
-      <div className="absolute inset-0 bg-gradient-to-t from-cocoa-700/80 via-cocoa-700/10 to-transparent" />
-      <span className="absolute left-3 top-3 grid h-10 w-10 place-items-center rounded-full bg-white/90 text-lg shadow-soft sm:left-4 sm:top-4" aria-hidden>{o.emoji}</span>
-      <div className="absolute inset-x-0 bottom-0 p-4 text-white sm:p-5">
-        <h3 className="font-display text-2xl leading-tight sm:text-[1.7rem]">{o.name}</h3>
-        <p className="mt-0.5 text-xs text-cream-100/90 sm:text-sm">{o.blurb}</p>
-        <span className="mt-3 inline-flex translate-y-1 items-center gap-1.5 text-sm font-semibold opacity-100 transition duration-300 md:translate-y-3 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100 md:group-focus-visible:translate-y-0 md:group-focus-visible:opacity-100">
-          View Gifts <ArrowIcon size={16} />
-        </span>
+    <Link to={`/shop?occasion=${o.slug}`} id={o.slug} className="group block text-center">
+      <div className="relative mx-auto aspect-[3/4] overflow-hidden rounded-t-[999px] rounded-b-3xl border-[6px] border-white bg-gradient-to-b from-white to-cream-200 shadow-soft transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-lift">
+        {o.image
+          ? <div className="h-full p-4 pt-14 sm:p-6 sm:pt-20"><ProductImage src={o.image} alt={`${o.name} gifts`} className="rounded-2xl transition duration-700 group-hover:scale-105" /></div>
+          : <GiftArt scene={o.scene} tone={o.tone} title={`${o.name} gifts`} className="transition duration-700 group-hover:scale-110" />}
+        <span className="absolute inset-x-0 bottom-3 mx-auto grid h-11 w-11 place-items-center rounded-full bg-white text-xl shadow-card" aria-hidden>{o.emoji}</span>
       </div>
+      <h3 className="mt-4 font-display text-xl text-cocoa-700 sm:text-2xl">{o.name}</h3>
+      <p className="mt-1 text-xs text-cocoa-500 sm:text-sm">{o.blurb}</p>
+      <span className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-cocoa-600 transition group-hover:gap-2.5 group-hover:text-blush-400">View Gifts <ArrowIcon size={15} /></span>
     </Link>
   )
 }
